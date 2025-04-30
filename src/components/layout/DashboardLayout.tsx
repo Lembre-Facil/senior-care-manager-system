@@ -15,7 +15,7 @@ import {
   SidebarProvider
 } from '@/components/ui/sidebar';
 import { Button } from '@/components/ui/button';
-import { Calendar, User, Users, Clock, Pill, Search, Menu } from 'lucide-react';
+import { Calendar, User, Users, Clock, Pill, Search, Menu, UserSquare } from 'lucide-react';
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
@@ -31,6 +31,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
     { icon: Calendar, label: 'Consultas', path: '/appointments' },
     { icon: Pill, label: 'Medicações', path: '/medications' },
     { icon: Users, label: 'Cuidadores', path: '/caregivers' },
+    { icon: UserSquare, label: 'Médicos', path: '/doctors' },
   ];
 
   const isActive = (path: string): boolean => {
@@ -54,7 +55,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                 <SidebarMenu>
                   {menuItems.map((item) => (
                     <SidebarMenuItem key={item.path}>
-                      <SidebarMenuButton asChild active={isActive(item.path)}>
+                      <SidebarMenuButton asChild isActive={isActive(item.path)}>
                         <NavLink to={item.path} className="flex items-center gap-3">
                           <item.icon className="h-5 w-5" />
                           <span>{item.label}</span>

@@ -1,4 +1,3 @@
-
 export interface Patient {
   id: string;
   cpf: string;
