@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,6 +62,14 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// Custom colors for our senior care theme
+				care: {
+					primary: '#4A90E2',
+					secondary: '#7FB3F5',
+					accent: '#50C878',
+					light: '#E6F0FA',
+					dark: '#2A4365',
 				}
 			},
 			borderRadius: {
