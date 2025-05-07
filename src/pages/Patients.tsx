@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { DashboardLayout } from '@/components/layout/DashboardLayout';
 import { Button } from '@/components/ui/button';
@@ -36,6 +35,7 @@ import { Patient } from '@/types';
 import { Plus } from 'lucide-react';
 import { patients as initialPatients } from '@/data/mockData';
 import { format } from 'date-fns';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const Patients = () => {
   const { toast } = useToast();
@@ -44,6 +44,7 @@ const Patients = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [isViewOpen, setIsViewOpen] = useState(false);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+  const isMobile = useIsMobile();
 
   const handleOpenForm = (patient?: Patient) => {
     setSelectedPatient(patient);
@@ -117,7 +118,7 @@ const Patients = () => {
                 Novo Paciente
               </Button>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-2xl">
+            <DialogContent className="sm:max-w-[95%] md:max-w-[90%] lg:max-w-[80%] xl:max-w-2xl overflow-y-auto max-h-[90vh]">
               <DialogHeader>
                 <DialogTitle>
                   {selectedPatient ? 'Editar Paciente' : 'Adicionar Paciente'}
@@ -128,11 +129,14 @@ const Patients = () => {
                     : 'Preencha os dados do novo paciente no formulário abaixo.'}
                 </DialogDescription>
               </DialogHeader>
-              <PatientForm
-                patient={selectedPatient}
-                onSubmit={handleSubmitPatient}
-                onCancel={handleCloseForm}
-              />
+              <div className="overflow-y-auto pr-1">
+                <PatientForm
+                  patient={selectedPatient}
+                  onSubmit={handleSubmitPatient}
+                  onCancel={handleCloseForm}
+                  compact={isMobile}
+                />
+              </div>
             </DialogContent>
           </Dialog>
         </div>

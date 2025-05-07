@@ -13,6 +13,33 @@
   }
 }
 
+/* Additional override for patient edit form specifically */
+[data-radix-dialog-content].sm\:max-w-\[95\%\] {
+  max-width: 95vw !important;
+  max-height: 90vh;
+  padding: 1rem;
+}
+
+@media (min-width: 768px) {
+  [data-radix-dialog-content].md\:max-w-\[90\%\] {
+    max-width: 90vw !important;
+    padding: 1.25rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  [data-radix-dialog-content].lg\:max-w-\[80\%\] {
+    max-width: 80vw !important;
+    padding: 1.5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  [data-radix-dialog-content].xl\:max-w-2xl {
+    max-width: 42rem !important;
+  }
+}
+
 @media (max-width: 480px) {
   [data-radix-dialog-content] {
     padding: 16px;

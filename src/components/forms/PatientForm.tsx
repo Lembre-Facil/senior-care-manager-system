@@ -59,9 +59,10 @@ interface PatientFormProps {
   patient?: Patient;
   onSubmit: (data: Patient) => void;
   onCancel: () => void;
+  compact?: boolean;
 }
 
-export function PatientForm({ patient, onSubmit, onCancel }: PatientFormProps) {
+export function PatientForm({ patient, onSubmit, onCancel, compact = false }: PatientFormProps) {
   const [selectedDiseases, setSelectedDiseases] = useState<Disease[]>(
     patient?.diseases || []
   );
@@ -110,16 +111,16 @@ export function PatientForm({ patient, onSubmit, onCancel }: PatientFormProps) {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(handleFormSubmit)} className="space-y-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <form onSubmit={form.handleSubmit(handleFormSubmit)} className="space-y-4">
+        <div className={`grid grid-cols-1 ${compact ? 'gap-3' : 'md:grid-cols-2 gap-6'}`}>
           <FormField
             control={form.control}
             name="cpf"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>CPF</FormLabel>
+                <FormLabel className={compact ? "text-sm" : ""}>CPF</FormLabel>
                 <FormControl>
-                  <Input placeholder="000.000.000-00" {...field} />
+                  <Input placeholder="000.000.000-00" {...field} className={compact ? "h-8 text-sm" : ""} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -131,9 +132,9 @@ export function PatientForm({ patient, onSubmit, onCancel }: PatientFormProps) {
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Nome</FormLabel>
+                <FormLabel className={compact ? "text-sm" : ""}>Nome</FormLabel>
                 <FormControl>
-                  <Input placeholder="Nome completo" {...field} />
+                  <Input placeholder="Nome completo" {...field} className={compact ? "h-8 text-sm" : ""} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -145,7 +146,7 @@ export function PatientForm({ patient, onSubmit, onCancel }: PatientFormProps) {
             name="dateOfBirth"
             render={({ field }) => (
               <FormItem className="flex flex-col">
-                <FormLabel>Data de Nascimento</FormLabel>
+                <FormLabel className={compact ? "text-sm" : ""}>Data de Nascimento</FormLabel>
                 <Popover>
                   <PopoverTrigger asChild>
                     <FormControl>
@@ -153,7 +154,8 @@ export function PatientForm({ patient, onSubmit, onCancel }: PatientFormProps) {
                         variant="outline"
                         className={cn(
                           "w-full pl-3 text-left font-normal",
-                          !field.value && "text-muted-foreground"
+                          !field.value && "text-muted-foreground",
+                          compact && "h-8 text-sm"
                         )}
                       >
                         {field.value ? (
@@ -188,9 +190,9 @@ export function PatientForm({ patient, onSubmit, onCancel }: PatientFormProps) {
             name="city"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Cidade</FormLabel>
+                <FormLabel className={compact ? "text-sm" : ""}>Cidade</FormLabel>
                 <FormControl>
-                  <Input placeholder="Cidade" {...field} />
+                  <Input placeholder="Cidade" {...field} className={compact ? "h-8 text-sm" : ""} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -202,9 +204,9 @@ export function PatientForm({ patient, onSubmit, onCancel }: PatientFormProps) {
             name="susCard"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Cartão SUS</FormLabel>
+                <FormLabel className={compact ? "text-sm" : ""}>Cartão SUS</FormLabel>
                 <FormControl>
-                  <Input placeholder="Número do cartão SUS" {...field} />
+                  <Input placeholder="Número do cartão SUS" {...field} className={compact ? "h-8 text-sm" : ""} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -216,9 +218,9 @@ export function PatientForm({ patient, onSubmit, onCancel }: PatientFormProps) {
             name="contact"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Contato</FormLabel>
+                <FormLabel className={compact ? "text-sm" : ""}>Contato</FormLabel>
                 <FormControl>
-                  <Input placeholder="Telefone ou email" {...field} />
+                  <Input placeholder="Telefone ou email" {...field} className={compact ? "h-8 text-sm" : ""} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -232,11 +234,11 @@ export function PatientForm({ patient, onSubmit, onCancel }: PatientFormProps) {
             name="medicalHistory"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Histórico Médico</FormLabel>
+                <FormLabel className={compact ? "text-sm" : ""}>Histórico Médico</FormLabel>
                 <FormControl>
                   <Textarea
                     placeholder="Descreva o histórico médico do paciente"
-                    className="min-h-[120px]"
+                    className={compact ? "min-h-[80px] text-sm" : "min-h-[120px]"}
                     {...field}
                   />
                 </FormControl>
@@ -246,27 +248,27 @@ export function PatientForm({ patient, onSubmit, onCancel }: PatientFormProps) {
           />
         </div>
 
-        <Card>
-          <CardHeader>
-            <CardTitle>Doenças</CardTitle>
-            <CardDescription>
+        <Card className={compact ? "border-0 shadow-none" : ""}>
+          <CardHeader className={compact ? "p-3" : ""}>
+            <CardTitle className={compact ? "text-base" : ""}>Doenças</CardTitle>
+            <CardDescription className={compact ? "text-xs" : ""}>
               Selecione as doenças associadas a este paciente.
             </CardDescription>
           </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+          <CardContent className={compact ? "p-3 pt-0" : ""}>
+            <div className={`grid grid-cols-1 gap-2 ${compact ? 'sm:grid-cols-2' : 'md:grid-cols-2 lg:grid-cols-3 gap-3'}`}>
               {diseases.map((disease) => (
                 <div 
                   key={disease.cid}
-                  className={`p-3 rounded-lg border cursor-pointer ${
+                  className={`p-2 rounded-lg border cursor-pointer ${compact ? 'text-sm' : 'p-3'} ${
                     selectedDiseases.some(d => d.cid === disease.cid) 
                       ? 'bg-care-light border-care-primary' 
                       : 'hover:bg-muted/30'
                   }`}
                   onClick={() => handleDiseaseSelect(disease.cid)}
                 >
-                  <div className="font-medium">{disease.name}</div>
-                  <div className="text-sm text-muted-foreground">CID: {disease.cid}</div>
+                  <div className={`font-medium ${compact ? 'text-sm' : ''}`}>{disease.name}</div>
+                  <div className={`text-muted-foreground ${compact ? 'text-xs' : 'text-sm'}`}>CID: {disease.cid}</div>
                 </div>
               ))}
             </div>
@@ -274,10 +276,10 @@ export function PatientForm({ patient, onSubmit, onCancel }: PatientFormProps) {
         </Card>
 
         <div className="flex justify-end space-x-4">
-          <Button type="button" variant="outline" onClick={onCancel}>
+          <Button type="button" variant="outline" onClick={onCancel} className={compact ? "h-8 text-sm" : ""}>
             Cancelar
           </Button>
-          <Button type="submit">
+          <Button type="submit" className={compact ? "h-8 text-sm" : ""}>
             {patient ? 'Atualizar Paciente' : 'Cadastrar Paciente'}
           </Button>
         </div>
