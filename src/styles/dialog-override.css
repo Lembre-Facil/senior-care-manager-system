@@ -1,0 +1,40 @@
+
+/* Dialog overrides for better responsiveness */
+[data-radix-dialog-content] {
+  max-height: 95vh;
+  overflow-y: auto;
+  width: calc(100% - 24px);
+  max-width: 500px;
+}
+
+@media (min-width: 640px) {
+  [data-radix-dialog-content] {
+    max-width: 600px;
+  }
+}
+
+@media (max-width: 480px) {
+  [data-radix-dialog-content] {
+    padding: 16px;
+    margin: 0;
+  }
+  
+  [data-dialog-title] {
+    font-size: 18px;
+  }
+  
+  [data-dialog-description] {
+    font-size: 14px;
+  }
+}
+
+/* Make form elements more compact on smaller screens */
+@media (max-width: 640px) {
+  .space-y-4 {
+    margin-top: 0.75rem;
+  }
+  
+  .p-6 {
+    padding: 1rem;
+  }
+}

@@ -12,6 +12,9 @@ import Caregivers from "./pages/Caregivers";
 import Doctors from "./pages/Doctors";
 import NotFound from "./pages/NotFound";
 
+// Override Dialog component styling for better responsiveness
+import "./styles/dialog-override.css";
+
 const queryClient = new QueryClient();
 
 const App = () => (

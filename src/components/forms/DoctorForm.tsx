@@ -7,6 +7,7 @@ import { Doctor } from '@/types';
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/components/ui/form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 interface DoctorFormProps {
   doctor?: Doctor | null;
@@ -21,6 +22,8 @@ const formSchema = z.object({
 });
 
 export function DoctorForm({ doctor, onSubmit, onCancel }: DoctorFormProps) {
+  const isMobile = useIsMobile();
+  
   const form = useForm<Doctor>({
     resolver: zodResolver(formSchema),
     defaultValues: doctor || {
@@ -36,7 +39,7 @@ export function DoctorForm({ doctor, onSubmit, onCancel }: DoctorFormProps) {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-4">
+      <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-3">
         <FormField
           control={form.control}
           name="crm"
@@ -84,11 +87,11 @@ export function DoctorForm({ doctor, onSubmit, onCancel }: DoctorFormProps) {
           )}
         />
 
-        <div className="flex justify-end space-x-2 pt-4">
-          <Button type="button" variant="outline" onClick={onCancel}>
+        <div className="flex justify-end space-x-2 pt-3">
+          <Button type="button" variant="outline" onClick={onCancel} size={isMobile ? "sm" : "default"}>
             Cancelar
           </Button>
-          <Button type="submit">
+          <Button type="submit" size={isMobile ? "sm" : "default"}>
             {doctor ? "Salvar alterações" : "Cadastrar médico"}
           </Button>
         </div>
