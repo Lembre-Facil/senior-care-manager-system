@@ -18,6 +18,7 @@ import {
 const caregiverSchema = z.object({
   cpf: z.string().min(11, 'CPF deve ter pelo menos 11 caracteres'),
   name: z.string().min(2, 'Nome deve ter pelo menos 2 caracteres'),
+  email: z.string().email('Email inválido').min(5, 'Email deve ter pelo menos 5 caracteres'),
   contact: z.string().min(10, 'Contato deve ter pelo menos 10 caracteres'),
   address: z.string().min(5, 'Endereço deve ter pelo menos 5 caracteres'),
 });
@@ -36,6 +37,7 @@ export function CaregiverForm({ caregiver, onSubmit, onCancel }: CaregiverFormPr
     defaultValues: {
       cpf: caregiver?.cpf || '',
       name: caregiver?.name || '',
+      email: caregiver?.email || '',
       contact: caregiver?.contact || '',
       address: caregiver?.address || '',
     },
@@ -45,6 +47,7 @@ export function CaregiverForm({ caregiver, onSubmit, onCancel }: CaregiverFormPr
     const caregiverData: Caregiver = {
       cpf: data.cpf,
       name: data.name,
+      email: data.email,
       contact: data.contact,
       address: data.address,
       patients: caregiver?.patients || [],
@@ -87,12 +90,26 @@ export function CaregiverForm({ caregiver, onSubmit, onCancel }: CaregiverFormPr
 
           <FormField
             control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Email</FormLabel>
+                <FormControl>
+                  <Input placeholder="exemplo@email.com" type="email" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
             name="contact"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Contato</FormLabel>
                 <FormControl>
-                  <Input placeholder="Telefone ou email" {...field} />
+                  <Input placeholder="Telefone" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -104,7 +121,7 @@ export function CaregiverForm({ caregiver, onSubmit, onCancel }: CaregiverFormPr
             name="address"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Endereço</FormLabel>
+                <FormLabel className="col-span-full">Endereço</FormLabel>
                 <FormControl>
                   <Input placeholder="Endereço completo" {...field} />
                 </FormControl>

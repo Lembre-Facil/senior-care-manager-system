@@ -1,3 +1,4 @@
+
 export interface Patient {
   id: string;
   cpf: string;
@@ -34,6 +35,7 @@ export interface Appointment {
 export interface Caregiver {
   cpf: string;
   name: string;
+  email: string;
   contact?: string;
   address?: string;
   patients?: Patient[];
