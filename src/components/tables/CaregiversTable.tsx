@@ -37,6 +37,7 @@ export function CaregiversTable({ caregivers, onEdit, onDelete, onView }: Caregi
   const filteredCaregivers = caregivers.filter((caregiver) =>
     caregiver.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     caregiver.cpf.includes(searchTerm) ||
+    caregiver.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
     caregiver.contact?.includes(searchTerm) ||
     caregiver.address?.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -50,6 +51,7 @@ export function CaregiversTable({ caregivers, onEdit, onDelete, onView }: Caregi
   const columns: TableColumn<Caregiver>[] = [
     { key: 'name', header: 'Nome', sortable: true },
     { key: 'cpf', header: 'CPF', sortable: true },
+    { key: 'email', header: 'Email', sortable: true },
     { key: 'contact', header: 'Contato', sortable: true },
     { key: 'address', header: 'Endereço', sortable: true },
     { 

@@ -167,6 +167,10 @@ const Caregivers = () => {
                         <div>{selectedCaregiver.cpf}</div>
                       </div>
                       <div>
+                        <div className="text-sm text-muted-foreground">Email</div>
+                        <div>{selectedCaregiver.email}</div>
+                      </div>
+                      <div>
                         <div className="text-sm text-muted-foreground">Contato</div>
                         <div>{selectedCaregiver.contact}</div>
                       </div>

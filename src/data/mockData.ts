@@ -1,4 +1,3 @@
-
 import { Patient, Disease, Appointment, Caregiver, Doctor, Reminder, Medication } from "../types";
 
 // Mock diseases
@@ -37,11 +36,11 @@ export const doctors: Doctor[] = [
 
 // Mock caregivers
 export const caregivers: Caregiver[] = [
-  { cpf: "123.456.789-01", name: "Fernanda Gomes", contact: "(11) 98765-4321", address: "Av. Paulista, 1000" },
-  { cpf: "234.567.890-12", name: "Ricardo Ferreira", contact: "(11) 97654-3210", address: "Rua Augusta, 500" },
-  { cpf: "345.678.901-23", name: "Juliana Costa", contact: "(11) 96543-2109", address: "Rua Oscar Freire, 200" },
-  { cpf: "456.789.012-34", name: "Antônio Pereira", contact: "(11) 95432-1098", address: "Av. Brigadeiro Faria Lima, 1500" },
-  { cpf: "567.890.123-45", name: "Mariana Souza", contact: "(11) 94321-0987", address: "Rua dos Pinheiros, 300" }
+  { cpf: "123.456.789-01", name: "Fernanda Gomes", email: "fernanda.gomes@email.com", contact: "(11) 98765-4321", address: "Av. Paulista, 1000" },
+  { cpf: "234.567.890-12", name: "Ricardo Ferreira", email: "ricardo.ferreira@email.com", contact: "(11) 97654-3210", address: "Rua Augusta, 500" },
+  { cpf: "345.678.901-23", name: "Juliana Costa", email: "juliana.costa@email.com", contact: "(11) 96543-2109", address: "Rua Oscar Freire, 200" },
+  { cpf: "456.789.012-34", name: "Antônio Pereira", email: "antonio.pereira@email.com", contact: "(11) 95432-1098", address: "Av. Brigadeiro Faria Lima, 1500" },
+  { cpf: "567.890.123-45", name: "Mariana Souza", email: "mariana.souza@email.com", contact: "(11) 94321-0987", address: "Rua dos Pinheiros, 300" }
 ];
 
 // Mock reminders
