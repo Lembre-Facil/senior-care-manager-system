@@ -25,7 +25,7 @@ const Index = () => {
         <div className="mb-8">
           <h1 className="text-3xl font-bold mb-2">Painel de Controle</h1>
           <p className="text-muted-foreground">
-            Bem-vindo ao sistema de gerenciamento de asilo SeniorCare.
+            Bem-vindo ao LembreFácil - Sistema de gerenciamento de cuidados para idosos.
           </p>
         </div>
 

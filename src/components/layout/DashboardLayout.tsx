@@ -53,7 +53,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
           <div className="flex h-[60px] items-center px-4 border-b border-sidebar-border justify-between">
             <span className="font-semibold text-lg text-sidebar-foreground flex items-center space-x-2">
               <Clock className="h-5 w-5" />
-              <span>SeniorCare</span>
+              <span>LembreFácil</span>
             </span>
             <Button variant="ghost" size="icon" onClick={() => setIsMobileMenuOpen(false)}>
               <X className="h-4 w-4 text-sidebar-foreground" />
@@ -90,7 +90,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
           <SidebarHeader className="flex h-[60px] items-center px-6">
             <span className="font-semibold text-lg text-sidebar-foreground flex items-center space-x-2">
               <Clock className="h-6 w-6" />
-              <span>SeniorCare</span>
+              <span>LembreFácil</span>
             </span>
           </SidebarHeader>
           <SidebarContent>
@@ -121,7 +121,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
               <div className="lg:hidden">
                 <MobileMenu />
               </div>
-              <h1 className="text-lg font-semibold ml-2 md:ml-4">Sistema de Gerenciamento de Asilo</h1>
+              <h1 className="text-lg font-semibold ml-2 md:ml-4">LembreFácil</h1>
             </div>
           </header>
 
